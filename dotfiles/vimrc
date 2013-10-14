@@ -1,0 +1,70 @@
+"
+"  mumumu's ~/.vimrc setting
+"
+"  How to setup(in Ubuntu 13.04):
+"
+"  $ sudo apt-get install vim-nox git build-essential
+"  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/neobundle.vim.git
+"
+"  :NeoBundleInstall
+"  :NeoBundleInstall!
+"
+
+syntax on
+
+set fileencoding=utf-8
+set fileformat=unix
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set shiftwidth=4
+set hidden
+
+"
+"  for neobundle setting
+"
+
+set nocompatible
+filetype off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle.vim.git
+  call neobundle#rc(expand('~/.bundle'))
+endif
+
+NeoBundle 'Shougo/neobundle.vim.git'
+NeoBundle 'nvie/vim-flake8'
+
+filetype plugin on
+filetype indent on
+
+"
+"  for Python
+"
+"  http://www.vim.org/scripts/script.php?script_id=1542
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+"  https://github.com/nvie/vim-flake8
+let g:flake8_ignore="E501"
+autocmd BufWrite *.py :call Flake8()
+
+"
+"  status line
+"  http://www.ksknet.net/vi/statusline.html
+"
+set laststatus=2
+set statusline=%<%F\ %m%r%h%w
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']['.&filetype.']'}
+set statusline+=%=%l/%L,%c%V%8P
+
+"
+"  tag jump
+"  http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
+"
+set tags=~/work/tags
+set splitright
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"
+"  command alias
+"
+map ve :Ve!<CR>

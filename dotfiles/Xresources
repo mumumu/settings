@@ -1,0 +1,42 @@
+!
+!  Setting for urxvt
+!
+!  $ sudo apt-get install rxvt-unicode-256color
+!  $ xrdb -remove
+!  $ xrdb -override dotfiles/Xresources
+!  $ urxvt
+!
+
+!  basic
+Rxvt.font: xft:Ricty:pixelsize=24:antialias=true
+Rxvt.title: Urvxt Terminal
+Rxvt.geometry: 800x600
+Rxvt.termname: xterm
+
+!  im setting
+Rxvt.imFont: -jis-*-*-*-*-*-17-*-*-*-*-*-*-*
+
+!  color
+Rxvt.foreground: white
+
+!  scrollbar
+Rxvt.scrollBar_right: true
+Rxvt.scrollstyle: xterm
+
+!
+!  transparency
+!  Note: this does not work with w3mimgdisplay
+!
+!Rxvt.depth: 32
+Rxvt.background: [85]#000000
+
+!  misc
+Rxvt.saveLines: 66535
+
+!  url matcher
+!  Notice: you must enable matcher extention
+Rxvt.urllauncher: google-chrome 
+Rxvt.matcher.button: 1
+
+!  ext
+Rxvt.perl-ext-common: default,tabbed,matcher,confirm-paste
