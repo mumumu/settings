@@ -1,0 +1,58 @@
+{
+    "builders":[{
+        "type": "virtualbox",
+        "vm_name": "ubuntu-1204-server-lts",
+        "guest_os_type": "Ubuntu_64",
+        "iso_url": "http://ftp.riken.go.jp/Linux/ubuntu-iso/CDs/precise/ubuntu-12.04.3-server-amd64.iso",
+        "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
+        "iso_checksum_type": "md5",
+        "ssh_username": "vagrant",
+        "ssh_password": "vagrant",
+        "ssh_wait_timeout": "240m",
+        "http_directory": "./",
+        "boot_wait": "8s",
+        "boot_command":[
+            "<esc><esc><enter><wait>",
+            "/install/vmlinuz noapic ",
+            "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+            "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+            "hostname={{ .Name }} ",
+            "fb=false debconf/frontend=noninteractive ",
+            "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+            "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+            "initrd=/install/initrd.gz -- <enter>"
+        ],
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -h now",
+        "vboxmanage": [
+            ["modifyvm", "{{.Name}}", "--memory", "1024"],
+            ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ]
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'",
+      "inline": [
+        "apt-get update -y",
+        "apt-get upgrade -y",
+        "apt-get install -y linux-headers-$(uname -r) build-essential dkms",
+        "apt-get clean",
+        "mount -o loop VBoxGuestAdditions.iso /media/cdrom",
+        "sh /media/cdrom/VBoxLinuxAdditions.run",
+        "umount /media/cdrom",
+        "mkdir ~/.ssh",
+        "wget -qO- https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub >> ~/.ssh/authorized_keys",
+        "chmod 700 ~/.ssh",
+        "chmod 400 ~/.ssh/authorized_keys",
+        "chown -R vagrant.vagrant ~/.ssh",
+        "echo 'vagrant ALL=NOPASSWD:ALL' > /tmp/vagrant",
+        "chmod 0440 /tmp/vagrant",
+        "mv /tmp/vagrant /etc/sudoers.d/"
+    ]}],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": true,
+            "output": "ubuntu-12.04.3-server-amd64.box"
+        }
+    ]
+}
