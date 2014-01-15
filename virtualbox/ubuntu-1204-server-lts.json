@@ -34,7 +34,7 @@
       "inline": [
         "apt-get update -y",
         "apt-get upgrade -y",
-        "apt-get install -y linux-headers-$(uname -r) build-essential dkms",
+        "apt-get install -y linux-headers-$(uname -r) build-essential dkms puppet",
         "apt-get clean",
         "mount -o loop VBoxGuestAdditions.iso /media/cdrom",
         "sh /media/cdrom/VBoxLinuxAdditions.run",
