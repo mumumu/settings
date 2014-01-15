@@ -1,6 +1,6 @@
 {
     "builders":[{
-        "type": "virtualbox",
+        "type": "virtualbox-iso",
         "vm_name": "ubuntu-1204-server-lts",
         "guest_os_type": "Ubuntu_64",
         "iso_url": "http://ftp.riken.go.jp/Linux/ubuntu-iso/CDs/precise/ubuntu-12.04.3-server-amd64.iso",
