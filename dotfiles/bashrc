@@ -30,7 +30,8 @@ fi
 #  My Environment
 #
 
-export PS1="\u@\h \t \033[36m\w\033[0m$ "
+export GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
 export SVN_EDITOR=vim
 export EDITOR=vim
 
