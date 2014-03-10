@@ -33,6 +33,7 @@ endif
 
 NeoBundle 'Shougo/neobundle.vim.git'
 NeoBundle 'nvie/vim-flake8'
+NeoBundle 'tpope/vim-fugitive'
 
 filetype plugin on
 filetype indent on
@@ -59,6 +60,7 @@ set nobackup
 set laststatus=2
 set statusline=%<%F\ %m%r%h%w
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']['.&filetype.']'}
+set statusline+=%{fugitive#statusline()}
 set statusline+=%=%l/%L,%c%V%8P
 
 "
