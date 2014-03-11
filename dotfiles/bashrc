@@ -54,38 +54,20 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# 
-#  great filer.
-#  http://ranger.nongnu.org/
 #
-#  $ sudo apt-get install ranger
-#
-alias ra='ranger'
-
-#
-#  rbenv
-#
-#  https://github.com/sstephenson/rbenv
-#
-#  $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-#  $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-#  $ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-#  $ exec $SHELL -l
-#  $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-#  $ rbenv install --list
-#  $ rbenv install 2.0.0-p247
-#  $ rbenv glocal 2.0.0-p247
-#
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 #   keychain
 #
 #   sudo apt-get install keychain
+#
 if [ -f $HOME/.ssh/id_dsa ];then
     keychain id_dsa
 fi
 if [ -f $HOME/.ssh/id_rsa ];then
     keychain id_rsa
 fi
+
 . ~/.keychain/$HOSTNAME-sh
+
+if [ -f $HOME/.bashrc_custom ];then
+    . $HOME/.bashrc_custom
+fi
