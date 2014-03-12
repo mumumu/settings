@@ -59,14 +59,18 @@ alias l='ls -CF'
 #
 #   sudo apt-get install keychain
 #
+USE_KEYCHAIN=0
 if [ -f $HOME/.ssh/id_dsa ];then
     keychain id_dsa
+    USE_KEYCHAIN=1
 fi
 if [ -f $HOME/.ssh/id_rsa ];then
     keychain id_rsa
+    USE_KEYCHAIN=1
 fi
-
-. ~/.keychain/$HOSTNAME-sh
+if [ $USE_KEYCHAIN -eq 1 ];then
+    . ~/.keychain/$HOSTNAME-sh
+fi
 
 if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
