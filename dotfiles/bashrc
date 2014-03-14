@@ -55,6 +55,15 @@ alias la='ls -A'
 alias l='ls -CF'
 
 #
+#  rbenv
+#  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+#
+if [ -d $HOME/.rbenv ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+#
 #   keychain
 #
 #   sudo apt-get install keychain
