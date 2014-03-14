@@ -34,6 +34,7 @@ endif
 NeoBundle 'Shougo/neobundle.vim.git'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
 
 filetype plugin on
 filetype indent on
