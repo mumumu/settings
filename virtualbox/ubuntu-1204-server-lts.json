@@ -1,7 +1,7 @@
 {
     "builders":[{
         "type": "virtualbox-iso",
-        "vm_name": "ubuntu-1204-server-lts",
+        "vm_name": "puppettest.ubuntu.dev.kau.li",
         "guest_os_type": "Ubuntu_64",
         "iso_url": "http://ftp.riken.go.jp/Linux/ubuntu-iso/CDs/precise/ubuntu-12.04.3-server-amd64.iso",
         "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
@@ -46,7 +46,8 @@
         "chown -R vagrant.vagrant ~/.ssh",
         "echo 'vagrant ALL=NOPASSWD:ALL' > /tmp/vagrant",
         "chmod 0440 /tmp/vagrant",
-        "mv /tmp/vagrant /etc/sudoers.d/"
+        "mv /tmp/vagrant /etc/sudoers.d/",
+        "useradd -m nn"
     ]}],
     "post-processors": [
         {
