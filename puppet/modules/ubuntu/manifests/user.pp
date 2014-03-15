@@ -7,7 +7,10 @@ class ubuntu::user {
             notify  => File[$dir_fullpath]
         }
         file {$dir_fullpath:
-            owner => $dir_owner
+            ensure   => directory,
+            owner    => $dir_owner,
+            group    => $dir_owner,
+            recurse  => true,
         }
     }
 
