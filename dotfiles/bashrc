@@ -30,10 +30,16 @@ fi
 #  My Environment
 #
 
-export GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
-export SVN_EDITOR=vim
-export EDITOR=vim
+if [ -f /usr/bin/git ]; then
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
+    export SVN_EDITOR=vim
+    export EDITOR=vim
+
+    alias di="git diff"
+    alias st="git status"
+    alias br="git branch"
+fi
 
 #
 #  My aliases
