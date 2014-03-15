@@ -31,6 +31,9 @@ fi
 #
 
 if [ -f /usr/bin/git ]; then
+    if [ -f /etc/bash_completion.d/git ];then
+        . /etc/bash_completion.d/git
+    fi 
     export GIT_PS1_SHOWDIRTYSTATE=true
     export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
     export SVN_EDITOR=vim
