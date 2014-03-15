@@ -16,50 +16,46 @@ class ubuntu::user {
     }
 
     define ubuntu::user::resource($username) {
+        git_clone_from_github {
+            "neobundle_$username":
+                path         => 'Shougo/neobundle.vim.git',
+                dir_fullpath => "/home/$username/.vim/neobundle.vim.git",
+                username     => $username ;
 
-        git_clone_from_github {"neobundle_$username":
-            path         => 'Shougo/neobundle.vim.git',
-            dir_fullpath => "/home/$username/.vim/neobundle.vim.git",
-            username     => $username,
+            "rbenv_$username":
+                path         => 'sstephenson/rbenv.git',
+                dir_fullpath => "/home/$username/.rbenv",
+                username     => $username ;
+
+            "ruby-build_$username":
+                path         => 'sstephenson/ruby-build.git',
+                dir_fullpath => "/home/$username/.rbenv/plugins/ruby-build",
+                username     => $username ;
+
+            "settings_$username":
+                path         => 'mumumu/settings.git',
+                dir_fullpath => "/home/$username/settings",
+                username     => $username ;
         }
 
-        git_clone_from_github {"rbenv_$username":
-            path         => 'sstephenson/rbenv.git',
-            dir_fullpath => "/home/$username/.rbenv",
-            username     => $username,
-        }
+        file {
+            "/home/$username/.vimrc":
+                ensure  => 'link',
+                target  =>  "/home/$username/settings/dotfiles/vimrc",
+                require => Git_clone_from_github["settings_$username"],
+                owner   => $username ;
 
-        git_clone_from_github {"ruby-build_$username":
-            path         => 'sstephenson/ruby-build.git',
-            dir_fullpath => "/home/$username/.rbenv/plugins/ruby-build",
-            username     => $username,
-        }
+            "/home/$username/.gitconfig":
+                ensure  => 'link',
+                target  =>  "/home/$username/settings/dotfiles/gitconfig",
+                require => Git_clone_from_github["settings_$username"],
+                owner   => $username ;
 
-        git_clone_from_github {"settings_$username":
-            path         => 'mumumu/settings.git',
-            dir_fullpath => "/home/$username/settings",
-            username     => $username,
-        }
-
-        file {"/home/$username/.vimrc":
-            ensure  => 'link',
-            target  =>  "/home/$username/settings/dotfiles/vimrc",
-            require => Git_clone_from_github["settings_$username"],
-            owner   => $username,
-        }
-
-        file {"/home/$username/.gitconfig":
-            ensure  => 'link',
-            target  =>  "/home/$username/settings/dotfiles/gitconfig",
-            require => Git_clone_from_github["settings_$username"],
-            owner   => $username,
-        }
-
-        file {"/home/$username/.bashrc":
-            ensure  => 'link',
-            target  =>  "/home/$username/settings/dotfiles/bashrc",
-            require => Git_clone_from_github["settings_$username"],
-            owner   => $username,
+            "/home/$username/.bashrc":
+                ensure  => 'link',
+                target  =>  "/home/$username/settings/dotfiles/bashrc",
+                require => Git_clone_from_github["settings_$username"],
+                owner   => $username ;
         }
     }
 

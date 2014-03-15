@@ -1,7 +1,7 @@
 #
 #   puppet manifest entry point
 #
-#   $ puppet apply --modulepath=/path/to/modules site.pp
+#   $ sudo puppet apply --modulepath=/path/to/modules --debug --verbose site.pp
 #
 
 import 'default'

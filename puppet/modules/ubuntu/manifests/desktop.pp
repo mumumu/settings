@@ -30,15 +30,15 @@ class ubuntu::desktop {
         ensure => installed,
     }
 
-    download_and_install_dpkg {'virtualbox':
-        cmd_name            => 'virtualbox',
-        deb_local_save_path => '/tmp/virtualbox-4.2.deb',
-        url                 => 'http://download.virtualbox.org/virtualbox/4.2.24/virtualbox-4.2_4.2.24-92790~Ubuntu~raring_amd64.deb',
-    }
+    download_and_install_dpkg {
+        'dropbox':
+            cmd_name            => 'dropbox',
+            deb_local_save_path => '/tmp/dropbox.deb',
+            url                 => 'https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb';
 
-    download_and_install_dpkg {'dropbox':
-        cmd_name            => 'dropbox',
-        deb_local_save_path => '/tmp/dropbox.deb',
-        url                 => 'https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb'
+        'virtualbox':
+            cmd_name            => 'virtualbox',
+            deb_local_save_path => '/tmp/virtualbox-4.2.deb',
+            url                 => 'http://download.virtualbox.org/virtualbox/4.2.24/virtualbox-4.2_4.2.24-92790~Ubuntu~raring_amd64.deb';
     }
 }
