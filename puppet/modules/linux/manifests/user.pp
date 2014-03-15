@@ -1,4 +1,4 @@
-class ubuntu::user {
+class linux::user {
 
     define git_clone_from_github($path, $dir_fullpath, $dir_owner) {
         exec { $dir_fullpath:
@@ -18,7 +18,7 @@ class ubuntu::user {
         require => Package['git'],
     }
 
-    define ubuntu::user::resource($username, $ssh_public_key, $ssh_key_type) {
+    define linux::user::resource($username, $ssh_public_key, $ssh_key_type) {
         git_clone_from_github {
             "neobundle_$username":
                 path         => 'Shougo/neobundle.vim.git',
@@ -74,7 +74,7 @@ class ubuntu::user {
         ensure => present
     }
 
-    ubuntu::user::resource {'mumumu':
+    linux::user::resource {'mumumu':
         username       => 'mumumu',
         require        => User['mumumu'],
         ssh_public_key => 'AAAAB3NzaC1kc3MAAACBAMaLaD38tzFqrpPBrmg6GKeXK46fyKGg21oXX+tyP6AIZ+qbQeUfYmTyRLteUZqUJgMybCaTEqejRu3K0i6ZP6W49iJE644rvmUKX1uZBPFY0JZZ7afxlHjT3T2CfN0F4hRwwGhj3cyMIdwjqj97hcv1knVjvCBSBwtQNyW7VvVNAAAAFQC9snoTA6HXu4C1LEbp3VSZUNGUMQAAAIALJFml4BP9nDwt4TzRn8nQtmdkM+G/Oq3bh8Db4RGERyn8KDzJFSCcqv7W+e6ROvEGLijPgJwtQamfLUQOAbaoyaw3piykDmX7Yz9DunFwL/tCpWwlppX3mACA7tSOGsO8QpmJMqrAoToizDKsn3p7EPrbXGlgvktEVoSV4HcigAAAAIBs0zuwkaZ5tPuDitpuUgvVkhdsmyXGJqLNXyxi0xSVqqOMyFznireGzQunXDWr0pGqkjSXU2et1gFGP+T0bPjDDm+B5JsvoQ1XM2qiNbk0pXuOwRvSng4YHrZtqCmyh4kbOJY8tCasUC/FJNkIA626a7ZYZ5RKDsiBMmnsV8XbGA==',

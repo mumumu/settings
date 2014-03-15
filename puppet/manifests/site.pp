@@ -8,6 +8,6 @@ import 'default'
 
 
 node 'mumumu-U31F' {
+    include linux::user
     include ubuntu::desktop
-    include ubuntu::user
 }
