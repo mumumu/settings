@@ -15,7 +15,7 @@ class ubuntu::user {
         require => Package['git'],
     }
 
-    define linux::user::resource($username) {
+    define ubuntu::user::resource($username) {
 
         git_clone_from_github {"neobundle_$username":
             path         => 'Shougo/neobundle.vim.git',
@@ -67,7 +67,7 @@ class ubuntu::user {
         ensure => present
     }
 
-    linux::user::resource {'mumumu':
+    ubuntu::user::resource {'mumumu':
         username => 'mumumu',
         require  => User['mumumu']
     }
