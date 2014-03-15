@@ -1,13 +1,13 @@
 class ubuntu::user {
 
-    define git_clone_from_github($path, $dir_fullpath, $username) {
+    define git_clone_from_github($path, $dir_fullpath, $dir_owner) {
         exec { $dir_fullpath:
             command => "git clone http://github.com/$path $dir_fullpath",
             unless  => "test -d $dir_fullpath",
             notify  => File[$dir_fullpath]
         }
         file {$dir_fullpath:
-            owner => $username
+            owner => $dir_owner
         }
     }
 
@@ -20,22 +20,22 @@ class ubuntu::user {
             "neobundle_$username":
                 path         => 'Shougo/neobundle.vim.git',
                 dir_fullpath => "/home/$username/.vim/neobundle.vim.git",
-                username     => $username ;
+                dir_owner    => $username ;
 
             "rbenv_$username":
                 path         => 'sstephenson/rbenv.git',
                 dir_fullpath => "/home/$username/.rbenv",
-                username     => $username ;
+                dir_owner    => $username ;
 
             "ruby-build_$username":
                 path         => 'sstephenson/ruby-build.git',
                 dir_fullpath => "/home/$username/.rbenv/plugins/ruby-build",
-                username     => $username ;
+                dir_owner    => $username ;
 
             "settings_$username":
                 path         => 'mumumu/settings.git',
                 dir_fullpath => "/home/$username/settings",
-                username     => $username ;
+                dir_owner    => $username ;
         }
 
         file {
