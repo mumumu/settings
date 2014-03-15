@@ -36,18 +36,17 @@
         "apt-get upgrade -y",
         "apt-get install -y linux-headers-$(uname -r) build-essential dkms puppet",
         "apt-get clean",
-        "mount -o loop VBoxGuestAdditions.iso /media/cdrom",
+        "mount -o loop /home/vagrant/VBoxGuestAdditions.iso /media/cdrom",
         "sh /media/cdrom/VBoxLinuxAdditions.run",
         "umount /media/cdrom",
-        "mkdir ~/.ssh",
-        "wget -qO- https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub >> ~/.ssh/authorized_keys",
-        "chmod 700 ~/.ssh",
-        "chmod 400 ~/.ssh/authorized_keys",
-        "chown -R vagrant.vagrant ~/.ssh",
+        "mkdir /home/vagrant/.ssh",
+        "wget -qO- https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub >> /home/vagrant/.ssh/authorized_keys",
+        "chmod 700 /home/vagrant/.ssh",
+        "chmod 400 /home/vagrant/.ssh/authorized_keys",
+        "chown -R vagrant.vagrant /home/vagrant/.ssh",
         "echo 'vagrant ALL=NOPASSWD:ALL' > /tmp/vagrant",
         "chmod 0440 /tmp/vagrant",
-        "mv /tmp/vagrant /etc/sudoers.d/",
-        "useradd -m nn"
+        "mv /tmp/vagrant /etc/sudoers.d/"
     ]}],
     "post-processors": [
         {
