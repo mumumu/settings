@@ -7,5 +7,6 @@ Exec {
 }
 
 User {
-    managehome => true
+    managehome => true,
+    shell      => '/bin/bash',
 }
