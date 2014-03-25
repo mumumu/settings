@@ -18,6 +18,7 @@ set shiftwidth=4
 set tabstop=4
 set shiftwidth=4
 set hidden
+set shell=/bin/bash\ -l\ -O\ expand_aliases
 
 "
 "  for neobundle setting
