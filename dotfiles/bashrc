@@ -42,6 +42,7 @@ if [ -f /usr/bin/git ]; then
     alias di="git diff"
     alias st="git status"
     alias br="git branch"
+    alias master="git checkout master"
 fi
 
 #
