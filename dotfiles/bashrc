@@ -98,6 +98,13 @@ fi
 #
 #  for tmux
 #
+exec_tmux() {
+    tmux a
+    if [ $? -ne 0 ]; then
+        tmux
+    fi
+}
+
 agent="$HOME/.ssh-agent-`id -u`"
 if [ -S "$SSH_AUTH_SOCK" ]; then
     case $SSH_AUTH_SOCK in
@@ -109,4 +116,4 @@ elif [ -S $agent ]; then
 else
     echo "no ssh-agent"
 fi
-alias tmux="SSH_AUTH_SOCK=$agent ; tmux a"
+alias tmux="SSH_AUTH_SOCK=$agent ; exec_tmux"
