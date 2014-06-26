@@ -80,4 +80,3 @@ map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "  command alias
 "
 map ve :Ve!<CR>
-autocmd BufWritePre * :%s/\s\+$//e
