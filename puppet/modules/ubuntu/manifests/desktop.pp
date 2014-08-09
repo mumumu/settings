@@ -44,7 +44,7 @@ class ubuntu::desktop {
 
         'virtualbox':
             cmd_name            => 'virtualbox',
-            deb_local_save_path => '/tmp/virtualbox-4.2.deb',
+            deb_local_save_path => '/tmp/virtualbox.deb',
             deb_download_url    => 'http://download.virtualbox.org/virtualbox/4.3.14/virtualbox-4.3_4.3.14-95030~Ubuntu~raring_amd64.deb';
     }
 }
