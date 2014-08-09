@@ -21,6 +21,7 @@ class ubuntu::desktop {
     package {[
         'build-essential',
         'git',
+        'lv',
         'ctags',
         'python-virtualenv',
         'vim-nox',
@@ -30,6 +31,7 @@ class ubuntu::desktop {
         'gimp',
         'vpnc',
         'fontforge',
+        'konversation',
         'keychain']:
         ensure => installed,
     }
