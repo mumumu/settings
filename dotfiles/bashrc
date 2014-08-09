@@ -1,5 +1,8 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+# .bashrc for interactive terminal
+[ -z "$PS1" ] && return
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -42,6 +45,7 @@ if [ -f /usr/bin/git ]; then
     alias di="git diff"
     alias st="git status"
     alias br="git branch"
+    alias master="git checkout master"
 fi
 
 #
@@ -93,3 +97,26 @@ fi
 if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
+
+#
+#  for tmux
+#
+exec_tmux() {
+    tmux a
+    if [ $? -ne 0 ]; then
+        tmux
+    fi
+}
+
+agent="$HOME/.ssh-agent-`id -u`"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+    case $SSH_AUTH_SOCK in
+    /tmp/*/agent.[0-9]*)
+        ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
+    esac
+elif [ -S $agent ]; then
+    export SSH_AUTH_SOCK=$agent
+else
+    echo "no ssh-agent"
+fi
+alias tmux="SSH_AUTH_SOCK=$agent ; exec_tmux"

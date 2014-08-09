@@ -4,6 +4,7 @@
 "  How to setup(in Ubuntu 13.04):
 "
 "  $ sudo apt-get install vim-nox git build-essential
+"  $ sudo pip install isort
 "  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/neobundle.vim.git "
 "  :NeoBundleInstall
 "  :NeoBundleInstall!
@@ -19,6 +20,8 @@ set tabstop=4
 set shiftwidth=4
 set hidden
 set shell=/bin/bash\ -l\ -O\ expand_aliases
+set autoindent
+set paste
 
 "
 "  for neobundle setting
@@ -36,6 +39,7 @@ NeoBundle 'Shougo/neobundle.vim.git'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
+NeoBundle 'fisadev/vim-isort'
 
 filetype plugin on
 filetype indent on
@@ -48,6 +52,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 "  https://github.com/nvie/vim-flake8
 let g:flake8_ignore="E501"
 autocmd BufWrite *.py :call Flake8()
+let g:vim_isort_map = '<C-i>'
 
 "
 "  no backup
