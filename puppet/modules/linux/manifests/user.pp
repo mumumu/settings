@@ -64,7 +64,7 @@ class linux::user {
       
         ssh_authorized_key { "ssh_public_key_$username":
             ensure => present,
-	    key    => $ssh_public_key,
+            key    => $ssh_public_key,
             user   => $username,
             type   => $ssh_key_type,
         }
