@@ -1,6 +1,6 @@
 class redis {
 
-    package { 'redis':
+    package { 'redis-server':
         ensure => 'installed'
     }
 
