@@ -21,6 +21,7 @@ class ubuntu::desktop {
     package {[
         'build-essential',
         'git',
+        'lv',
         'ctags',
         'python-virtualenv',
         'vim-nox',
@@ -29,7 +30,9 @@ class ubuntu::desktop {
         'sylpheed',
         'gimp',
         'vpnc',
+        'rdesktop',
         'fontforge',
+        'konversation',
         'keychain']:
         ensure => installed,
     }
@@ -42,7 +45,7 @@ class ubuntu::desktop {
 
         'virtualbox':
             cmd_name            => 'virtualbox',
-            deb_local_save_path => '/tmp/virtualbox-4.2.deb',
-            deb_download_url    => 'http://download.virtualbox.org/virtualbox/4.2.24/virtualbox-4.2_4.2.24-92790~Ubuntu~raring_amd64.deb';
+            deb_local_save_path => '/tmp/virtualbox.deb',
+            deb_download_url    => 'http://download.virtualbox.org/virtualbox/4.3.14/virtualbox-4.3_4.3.14-95030~Ubuntu~raring_amd64.deb';
     }
 }
