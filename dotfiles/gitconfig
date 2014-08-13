@@ -4,6 +4,7 @@
 [core]
     editor = vim
     pager = lv -c
+    excludesfile = ~/.gitignore
 [color]
     # color setting
     # the following command output is automatically colored
