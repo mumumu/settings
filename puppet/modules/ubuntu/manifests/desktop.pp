@@ -30,6 +30,7 @@ class ubuntu::desktop {
         'sylpheed',
         'gimp',
         'vpnc',
+        'ranger',
         'rdesktop',
         'fontforge',
         'konversation',
