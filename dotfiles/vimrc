@@ -39,7 +39,7 @@ NeoBundle 'Shougo/neobundle.vim.git'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
-NeoBundle 'fisadev/vim-isort'
+"NeoBundle 'fisadev/vim-isort'
 
 filetype plugin on
 filetype indent on
@@ -48,11 +48,11 @@ filetype indent on
 "  for Python
 "
 "  http://www.vim.org/scripts/script.php?script_id=1542
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
 "  https://github.com/nvie/vim-flake8
 let g:flake8_ignore="E501"
 autocmd BufWrite *.py :call Flake8()
-let g:vim_isort_map = '<C-i>'
+"let g:vim_isort_map = '<C-i>'
 
 "
 "  no backup
@@ -79,20 +79,26 @@ set splitright
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "
-"  command alias
+"  command alias for ranger
 "
+let g:ranger_cwd = getcwd()
 
 function! RangeChooser()
     let temp = tempname()
+    let ranger_cwd_files = system("ls -lart | grep types.py")
+    if strlen(ranger_cwd_files) > 0
+        g:ranger_cwd = system("dirname `dirname " . g:ranger_cwd . '`')   
+    endif
     " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
     " with ranger 1.4.2 through 1.5.0 instead.
     "exec 'silent !ranger --choosefile=' . shellescape(temp)
-    exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    exec 'silent !ranger --choosefiles=' . shellescape(temp) . ' ' . g:ranger_cwd
     if !filereadable(temp)
         " Nothing to read.
         return
     endif
     let names = readfile(temp)
+    echo names
     if empty(names)
         " Nothing to open.
         return
@@ -103,6 +109,7 @@ function! RangeChooser()
     for name in names[1:]
         exec 'argadd ' . fnameescape(name)
     endfor
+    let g:ranger_cwd = fnamemodify(expand(names[0]), ":h")
     redraw!
 endfunction
 command! -bar RangerChooser call RangeChooser()
