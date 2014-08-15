@@ -55,6 +55,12 @@ class linux::user {
                 require => Git_clone_from_github["settings_$username"],
                 owner   => $username ;
 
+            "/home/$username/.gitignore":
+                ensure  => 'link',
+                target  =>  "/home/$username/settings/dotfiles/gitignore",
+                require => Git_clone_from_github["settings_$username"],
+                owner   => $username ;
+
             "/home/$username/.bashrc":
                 ensure  => 'link',
                 target  =>  "/home/$username/settings/dotfiles/bashrc",
