@@ -118,6 +118,9 @@ exec_tmux() {
     fi
 }
 
+#
+#  for ssh agent on tmux
+#
 agent="$HOME/.ssh-agent-`id -u`"
 if [ -S "$SSH_AUTH_SOCK" ]; then
     case $SSH_AUTH_SOCK in
