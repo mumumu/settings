@@ -67,7 +67,15 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+#
+#  ranger
+#  sudo apt-get install ranger
+#
 alias r='ranger'
+if [ ! -d $HOME/.config/ranger ]; then
+    /usr/bin/ranger --copy-config=all
+fi
 
 #
 #  rbenv
