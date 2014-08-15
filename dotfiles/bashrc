@@ -39,6 +39,7 @@ if [ -f /usr/bin/git ]; then
     fi 
     export GIT_PS1_SHOWDIRTYSTATE=true
     export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
+    [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
     export SVN_EDITOR=vim
     export EDITOR=vim
 
@@ -66,7 +67,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ra='ranger'
+alias r='ranger'
 
 #
 #  rbenv
