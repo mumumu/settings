@@ -1,16 +1,24 @@
 class linux::user {
 
     define git_clone_from_github($path, $dir_fullpath, $dir_owner) {
-        exec { $dir_fullpath:
-            command => "git clone http://github.com/$path $dir_fullpath",
+        $gitclone_cmd = "git clone http://github.com/$path $dir_fullpath"
+        $chown_cmd = "chown -R $dir_owner.$dir_owner $dir_fullpath"
+        exec { $gitclone_cmd:
             unless  => "test -d $dir_fullpath",
-            notify  => File[$dir_fullpath]
+            notify => Exec[$chown_cmd],
         }
-        file {$dir_fullpath:
-            ensure   => directory,
-            owner    => $dir_owner,
-            group    => $dir_owner,
-            recurse  => true,
+
+        #  Yes, we can set the following, but on Puppet 3,  it's 
+        #  extremely slow for big directory tree...
+        #
+        #  file { $dir_fullpath:
+        #    ensure   => directory,
+        #    owner    => $dir_owner,
+        #    group    => $dir_owner,
+        #    recurse  => true,
+        #  }
+        exec { $chown_cmd:
+            unless  => "/usr/bin/stat -c %U $dir_fullpath | grep $dir_owner",
         }
     }
 
@@ -52,6 +60,12 @@ class linux::user {
             "/home/$username/.gitconfig":
                 ensure  => 'link',
                 target  =>  "/home/$username/settings/dotfiles/gitconfig",
+                require => Git_clone_from_github["settings_$username"],
+                owner   => $username ;
+
+            "/home/$username/.gitignore":
+                ensure  => 'link',
+                target  =>  "/home/$username/settings/dotfiles/gitignore",
                 require => Git_clone_from_github["settings_$username"],
                 owner   => $username ;
 
