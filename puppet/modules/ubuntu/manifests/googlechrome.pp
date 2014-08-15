@@ -15,6 +15,7 @@ class ubuntu::googlechrome {
     $chrome_update_resource = "apt-get update for google chrome installation"
     exec { $chrome_update_resource:
         command => "apt-get update",
+        unless => "test -f /etc/apt/sources.list.d/google.list",
         require => Exec[$create_google_apt_list_cmd],
     }
 
