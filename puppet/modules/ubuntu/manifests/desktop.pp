@@ -31,6 +31,7 @@ class ubuntu::desktop {
         'gimp',
         'vpnc',
         'ranger',
+        'highlight',
         'rdesktop',
         'fontforge',
         'konversation',
