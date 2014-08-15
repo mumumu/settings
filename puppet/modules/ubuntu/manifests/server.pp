@@ -9,6 +9,7 @@ class ubuntu::server {
         'vim-nox',
         'wget',
         'ranger',
+        'highlight',
         'keychain']:
         ensure => installed,
     }
