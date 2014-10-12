@@ -21,6 +21,8 @@ set hidden
 set shell=/bin/bash\ -l\ -O\ expand_aliases
 set autoindent
 set paste
+set splitright
+set hlsearch
 
 "
 "  for neobundle setting
