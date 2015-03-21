@@ -88,6 +88,14 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 #
+#  phpbrew
+#  https://github.com/phpbrew/phpbrew#install-phpbrew
+#
+if [ -d $HOME/.phpbrew ]; then
+    source ~/.phpbrew/bashrc
+fi
+
+#
 #   keychain
 #
 #   sudo apt-get install keychain
