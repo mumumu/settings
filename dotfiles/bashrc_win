@@ -1,0 +1,100 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# .bashrc for interactive terminal
+[ -z "$PS1" ] && return
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+#
+#  My Environment
+#
+
+if [ -f /usr/bin/git ]; then
+    if [ -f /etc/bash_completion.d/git ];then
+        . /etc/bash_completion.d/git
+    fi 
+
+    #
+    #  wget -O /etc/bash_completion.d/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    #
+    if [ -f /etc/bash_completion.d/git-prompt.sh ];then
+        . /etc/bash_completion.d/git-prompt.sh
+    fi 
+
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
+    [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
+    export SVN_EDITOR=vim
+    export EDITOR=vim
+
+    alias di="git diff"
+    alias st="git status"
+    alias br="git branch"
+    alias m="git checkout master && git pull"
+fi
+
+#
+#  My aliases
+#
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias pt='py.test -sv'
+
+#
+#   keychain
+#
+#   sudo apt-get install keychain
+#
+USE_KEYCHAIN=0
+if [ -f $HOME/.ssh/id_dsa ];then
+    keychain id_dsa
+    USE_KEYCHAIN=1
+fi
+if [ -f $HOME/.ssh/id_rsa ];then
+    keychain id_rsa
+    USE_KEYCHAIN=1
+fi
+if [ $USE_KEYCHAIN -eq 1 ];then
+    . ~/.keychain/$HOSTNAME-sh
+fi
+
+if [ -f $HOME/.bashrc_custom ];then
+    . $HOME/.bashrc_custom
+fi
