@@ -35,11 +35,15 @@ if has('vim_starting')
   set runtimepath+=~/.vim/neobundle.vim.git
   call neobundle#begin(expand('~/.bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
-  NeoBundleFetch 'nvie/vim-flake8'
-  NeoBundleFetch 'tpope/vim-fugitive'
-  NeoBundleFetch 'puppetlabs/puppet-syntax-vim'
   call neobundle#end()
 endif
+
+call neobundle#begin(expand('~/.bundle/'))
+NeoBundle 'Shougo/neobundle.vim.git'
+NeoBundle 'nvie/vim-flake8'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
+call neobundle#end()
 
 filetype plugin on
 filetype indent on
