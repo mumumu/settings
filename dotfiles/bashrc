@@ -137,3 +137,4 @@ alias tmux="SSH_AUTH_SOCK=$agent ; exec_tmux"
 
 #  other aliases
 alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
+alias sal="cd ~/Maildir && sa-learn --spam .spam/*"
