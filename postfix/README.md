@@ -39,6 +39,8 @@ username@example.com: userPassword
 `/etc/postfix/sasl/smtpd.conf` は、Debian での Postfix 上におけるパスである。  
 ディストリビューションによっては、異なる可能性がある。
 
+`mech_list` に `PLAIN` を加えれば、認証情報を平文で流したまま、認証を行うことができる。
+
 ```
 pwcheck_method: auxprop
 auxprop_plugin: sasldb
