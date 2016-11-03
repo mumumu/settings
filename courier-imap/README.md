@@ -3,9 +3,16 @@
 ここでは、courier-imap に CRAM-MD5 認証を設定する方法を説明する。  
 以下の手順により、UNIX のユーザ認証と、IMAP の認証を切り離すことができる
 
+IMAP のメールボックスにログインし、メールを読む際の認証設定なので、メールを送る際の認証(smtp auth) とは全く別物であることに注意
+
+postfix で 少しだけ安全に smtp auth (sasldb + CRAM-MD5) することに興味がある人は、以下が参考になるかもしれない
+
+https://github.com/mumumu/settings/tree/master/postfix
+
 ### 前提
 
-courier-imap, courier-authdaemon, sasl がインストールされていること
+- courier-imap, courier-authdaemon, Cyrus SASL がインストールされていること
+- Debian GNU/Linux Jessie の環境
 
 ### 手順
 
@@ -42,4 +49,7 @@ sudo service courier-authdaemon restart
 
 ### References
 
+- http://www.courier-mta.org/authlib/README_authlib.html
+- http://www.courier-mta.org/authlib/userdbpw.html
+- http://www.courier-mta.org/authlib/userdb.html
 - http://www.geocities.jp/gokuraccoon/imap.html

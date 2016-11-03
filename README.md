@@ -8,4 +8,6 @@ This repository is my valious software setting templates.
  - virtualbox related settings, including packer
 - puppet
  - puppet provisioning templates
-
+- MTA auth setting poem
+ - postfix
+ - courier-imap
