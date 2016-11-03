@@ -39,3 +39,7 @@ sudo service courier-authdaemon restart
 ### 認証のデバッグ
 
 /etc/courier/authdaemonrc の `DEBUG_LOGIN` を 2 に設定すると、syslog にパスワードも含めたデバッグログが吐かれる (取り扱い注意)
+
+### References
+
+- http://www.geocities.jp/gokuraccoon/imap.html
