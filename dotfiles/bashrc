@@ -88,6 +88,18 @@ if [ -d $HOME/.rbenv ]; then
 fi
 
 #
+#  phpenv
+#  $ git clone https://github.com/CHH/phpenv.git
+#  $ cd phpenv/bin
+#  $ ./phpenv-install.sh
+#  $ git clone https://github.com/CHH/php-build.git ~/.phpenv/plugins/php-build
+#
+if [ -d $HOME/.phpenv ]; then
+    export PATH="$HOME/.phpenv/bin:$PATH"
+    eval "$(phpenv init -)"
+fi
+
+#
 #   keychain
 #
 #   sudo apt-get install keychain
