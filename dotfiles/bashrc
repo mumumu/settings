@@ -68,6 +68,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias pt='py.test -sv'
+alias ..='cd -'
+alias rr='cd `git rev-parse --show-toplevel`'
 
 #
 #  ranger
@@ -120,32 +122,6 @@ fi
 if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
-
-#
-#  for tmux
-#
-exec_tmux() {
-    tmux a
-    if [ $? -ne 0 ]; then
-        tmux
-    fi
-}
-
-#
-#  for ssh agent on tmux
-#
-agent="$HOME/.ssh-agent-`id -u`"
-if [ -S "$SSH_AUTH_SOCK" ]; then
-    case $SSH_AUTH_SOCK in
-    /tmp/*/agent.[0-9]*)
-        ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
-    esac
-elif [ -S $agent ]; then
-    export SSH_AUTH_SOCK=$agent
-else
-    echo "no ssh-agent"
-fi
-alias tmux="SSH_AUTH_SOCK=$agent ; exec_tmux"
 
 #  other aliases
 alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
