@@ -59,6 +59,7 @@ hi Number ctermfg=LightRed
 hi boolean ctermfg=LightRed
 hi Character ctermfg=LightRed
 hi Statement ctermfg=LightYellow
+set background=dark
 
 " commands
 set fileencoding=utf-8
