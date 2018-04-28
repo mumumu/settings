@@ -59,6 +59,7 @@ hi Number ctermfg=LightRed
 hi boolean ctermfg=LightRed
 hi Character ctermfg=LightRed
 
+" commands
 set fileencoding=utf-8
 set fileformat=unix
 set noexpandtab
@@ -71,7 +72,10 @@ set autoindent
 set paste
 set splitright
 set nohlsearch
+
 set number
+:command Nn set nonumber
+:command NN set number
 
 "
 "  for Python
