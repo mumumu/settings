@@ -58,6 +58,7 @@ hi String ctermfg=LightRed
 hi Number ctermfg=LightRed
 hi boolean ctermfg=LightRed
 hi Character ctermfg=LightRed
+hi Statement ctermfg=LightYellow
 
 " commands
 set fileencoding=utf-8
