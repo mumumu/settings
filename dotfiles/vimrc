@@ -53,12 +53,6 @@ call neobundle#end()
 
 " Syntax
 syntax on
-hi Comment ctermfg=LightBlue
-hi String ctermfg=LightRed
-hi Number ctermfg=LightRed
-hi boolean ctermfg=LightRed
-hi Character ctermfg=LightRed
-hi Statement ctermfg=LightYellow
 set background=dark
 
 " commands
