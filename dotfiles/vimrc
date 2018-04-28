@@ -51,7 +51,13 @@ NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'fuenor/im_control.vim'
 call neobundle#end()
 
+" Syntax
 syntax on
+hi Comment ctermfg=LightBlue
+hi String ctermfg=LightRed
+hi Number ctermfg=LightRed
+hi boolean ctermfg=LightRed
+hi Character ctermfg=LightRed
 
 set fileencoding=utf-8
 set fileformat=unix
@@ -66,7 +72,6 @@ set paste
 set splitright
 set nohlsearch
 set number
-hi Comment ctermfg=LightBlue
 
 "
 "  for Python
