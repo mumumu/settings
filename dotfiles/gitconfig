@@ -5,6 +5,8 @@
     editor = vim
     pager = lv -c
     excludesfile = ~/.gitignore
+[diff]
+	tool = wdiff
 [color]
     # color setting
     # the following command output is automatically colored

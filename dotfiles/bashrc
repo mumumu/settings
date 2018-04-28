@@ -41,12 +41,15 @@ if [ -f /usr/bin/git ]; then
     export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
     [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
     export SVN_EDITOR=vim
-    export EDITOR=vim
+    export VISUAL=vim
+    export EDITOR="$VISUAL"
 
     alias di="git diff"
     alias st="git status"
     alias br="git branch"
+    alias gw="git worktree"
     alias m="git checkout master && git pull"
+    alias rr='cd `git rev-parse --show-toplevel`'
 fi
 
 #
@@ -58,7 +61,7 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 
-    alias grep='grep --color=auto'
+    alias grep='grep -E --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -69,7 +72,11 @@ alias la='ls -A'
 alias l='ls -CF'
 alias pt='py.test -sv'
 alias ..='cd -'
-alias rr='cd `git rev-parse --show-toplevel`'
+alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
+alias sal="cd ~/Maildir && sa-learn --spam .spam/*"
+alias vi="/usr/bin/vim"
+alias pt='py.test -sv'
+alias ..='cd -'
 
 #
 #  ranger
@@ -102,6 +109,18 @@ if [ -d $HOME/.phpenv ]; then
 fi
 
 #
+#  pyenv
+#  git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+#  git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+#
+if [ -d $HOME/.pyenv ]; then
+    export PYENV_ROOT=$HOME/.pyenv
+    export PATH=$PYENV_ROOT/bin:$PATH
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+#
 #   keychain
 #
 #   sudo apt-get install keychain
@@ -123,6 +142,5 @@ if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
 
-#  other aliases
-alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
-alias sal="cd ~/Maildir && sa-learn --spam .spam/*"
+# PATH
+export PATH=$HOME/bin:$PATH

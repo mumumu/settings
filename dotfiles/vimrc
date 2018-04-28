@@ -53,11 +53,7 @@ call neobundle#end()
 
 " Syntax
 syntax on
-hi Comment ctermfg=LightBlue
-hi String ctermfg=LightRed
-hi Number ctermfg=LightRed
-hi boolean ctermfg=LightRed
-hi Character ctermfg=LightRed
+set background=dark
 
 " commands
 set fileencoding=utf-8
