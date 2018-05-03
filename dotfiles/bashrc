@@ -52,6 +52,15 @@ if [ -f /usr/bin/git ]; then
     alias rr='cd `git rev-parse --show-toplevel`'
 fi
 
+if [ -f /usr/bin/svn ]; then
+    export SVN_EDITOR=vim
+    export VISUAL=vim
+    export EDITOR="$VISUAL"
+
+    alias sdi="svn diff | lv -c"
+    alias sst="svn status"
+fi
+
 #
 #  My aliases
 #
