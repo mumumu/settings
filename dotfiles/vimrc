@@ -4,7 +4,7 @@
 "  How to setup(in Ubuntu 14.04):
 "
 "  $ sudo apt-get install vim-nox git build-essential
-"  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/neobundle.vim.git "
+"  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 "  :NeoBundleInstall
 "  :NeoBundleInstall!
 "
