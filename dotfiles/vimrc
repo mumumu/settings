@@ -68,10 +68,14 @@ set autoindent
 set paste
 set splitright
 set nohlsearch
-
 set number
+
+"  command aliases
 :command Nn set nonumber
 :command NN set number
+if has('terminal')
+  :command Te terminal ++close ++rows=15
+endif
 
 "
 "  for Python
