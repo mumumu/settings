@@ -88,6 +88,7 @@ if [ -f "$HOME/bin/vim" ]; then
 else
   alias vi="/usr/bin/vim"
 fi
+alias w3m='w3m -M'
 alias pt='py.test -sv'
 alias ..='cd -'
 
