@@ -83,7 +83,11 @@ alias pt='py.test -sv'
 alias ..='cd -'
 alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
 alias sal="cd ~/Maildir && sa-learn --spam .spam/*"
-alias vi="/usr/bin/vim"
+if [ -f "$HOME/bin/vim" ]; then
+  alias vi="$HOME/bin/vim"
+else
+  alias vi="/usr/bin/vim"
+fi
 alias pt='py.test -sv'
 alias ..='cd -'
 
