@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+#
+#  IME (fcitx)  off if you keypress <escape> 
+#  refs: https://blog.longkey1.net/2014/11/12/fcitx-xbindkeys-xdotool-instead-of-autokey/
+#
+#  $ sudo apt-get install xdotool xbindkeys
+#  $ xbindkeys -d > ~/.xbindkeysrc
+#
+#   <edit ~/.xbindkeysrc>
+#
+#   "/home/mumumu/imeoff_escape"
+#     Escape
+#
+#   $ xbindkeys
+#
+wait=3
+
+start=$(date +%s)
+
+loop=1
+
+while [ $loop -eq 1 ]
+do
+  status=$(fcitx-remote)
+  case $status in
+    1 ) loop=0
+        continue
+        ;;
+    2 ) fcitx-remote -c
+        continue
+        ;;
+    * ) current=$(date +%s)
+        if [ $(expr $current - $start) -gt $wait ]; then
+          loop=0
+        fi
+        continue
+        ;;
+  esac
+done
+
+if [ -x "`which xdotool`" ]; then
+  xdotool key --clearmodifiers ctrl+c
+fi

@@ -4,16 +4,61 @@
 "  How to setup(in Ubuntu 14.04):
 "
 "  $ sudo apt-get install vim-nox git build-essential
-"  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/neobundle.vim.git "
+"  $ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 "  :NeoBundleInstall
 "  :NeoBundleInstall!
 "
 
-syntax on
+"
+"  for neobundle setting
+"
 
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
+
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'nvie/vim-flake8'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
+NeoBundle 'fuenor/im_control.vim'
+call neobundle#end()
+
+" Syntax
+syntax on
+set background=dark
+
+" commands
 set fileencoding=utf-8
 set fileformat=unix
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set tabstop=4
 set shiftwidth=4
@@ -22,31 +67,15 @@ set shell=/bin/bash\ -l\ -O\ expand_aliases
 set autoindent
 set paste
 set splitright
-set hlsearch
+set nohlsearch
+set number
 
-"
-"  for neobundle setting
-"
-
-set nocompatible
-filetype off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/neobundle.vim.git
-  call neobundle#begin(expand('~/.bundle/'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
-  call neobundle#end()
+"  command aliases
+:command Nn set nonumber
+:command NN set number
+if has('terminal')
+  :command Te terminal ++close ++rows=15
 endif
-
-call neobundle#begin(expand('~/.bundle/'))
-NeoBundle 'Shougo/neobundle.vim.git'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'puppetlabs/puppet-syntax-vim'
-call neobundle#end()
-
-filetype plugin on
-filetype indent on
 
 "
 "  for Python
@@ -70,14 +99,6 @@ set statusline=%<%F\ %m%r%h%w
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']['.&filetype.']'}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%=%l/%L,%c%V%8P
-
-"
-"  tag jump
-"  http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
-"
-set tags=~/work/tags
-set splitright
-map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "
 "  command alias for ranger
