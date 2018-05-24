@@ -37,6 +37,9 @@ if [ -f /usr/bin/git ]; then
     source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
     source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
+    source /usr/local/etc/bash_completion.d/git-completion.bash
+
     export GIT_PS1_SHOWDIRTYSTATE=true
     export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
     [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
