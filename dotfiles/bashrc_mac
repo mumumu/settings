@@ -37,6 +37,9 @@ if [ -f /usr/bin/git ]; then
     source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
     source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
+    source /usr/local/etc/bash_completion.d/git-completion.bash
+
     export GIT_PS1_SHOWDIRTYSTATE=true
     export PS1='\u@\h \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
     [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
@@ -68,6 +71,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias pt='py.test -sv'
+alias vi='vim'
 
 #
 #  ranger
@@ -117,28 +121,8 @@ if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
 
-#
-#  for tmux
-#
-exec_tmux() {
-    tmux a
-    if [ $? -ne 0 ]; then
-        tmux
-    fi
-}
-
-#
-#  for ssh agent on tmux
-#
-agent="$HOME/.ssh-agent-`id -u`"
-if [ -S "$SSH_AUTH_SOCK" ]; then
-    case $SSH_AUTH_SOCK in
-    /tmp/*/agent.[0-9]*)
-        ln -snf "$SSH_AUTH_SOCK" $agent && export SSH_AUTH_SOCK=$agent
-    esac
-elif [ -S $agent ]; then
-    export SSH_AUTH_SOCK=$agent
-else
-    echo "no ssh-agent"
-fi
-alias tmux="SSH_AUTH_SOCK=$agent ; exec_tmux"
+alias keepass="mono ~/build/KeePass-2.35/KeePass.exe"
+source $HOME/work/venv/bin/activate
+export PYTHONDONTWRITEBYTECODE=1
+export PATH=~/.nodebrew/current/bin:$PATH
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`

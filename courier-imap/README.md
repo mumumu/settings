@@ -26,6 +26,7 @@ IMAP_CAPABILITY="IMAP4rev1 UIDPLUS CHILDREN NAMESPACE THREAD=ORDEREDSUBJECT THRE
 
 ```
 authmodulelist="authuserdb"
+daemons=5
 ```
 
 3. /etc/courier/userdb を作成
