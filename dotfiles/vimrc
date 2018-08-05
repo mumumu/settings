@@ -74,7 +74,7 @@ set number
 :command Nn set nonumber
 :command NN set number
 if has('terminal')
-  :command Te terminal ++close ++rows=15
+  :command Te terminal ++close ++rows=45
 endif
 
 "
