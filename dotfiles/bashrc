@@ -90,6 +90,7 @@ else
 fi
 alias w3m='w3m -M'
 alias pt='py.test -sv'
+alias make='make -j`grep -c ^processor /proc/cpuinfo 2>/dev/null`'
 alias ..='cd -'
 
 #
