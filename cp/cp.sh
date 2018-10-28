@@ -17,6 +17,9 @@ lint:
 		echo "ok" ;\
 	fi
 
+test:
+	cat test.txt | ./a.out
+
 li:
 	\$(MAKE) -s lint
 EOS
@@ -34,6 +37,7 @@ start() {
 	fi
 	mkdir -p $NAME
 	cp $BASE/template.cxx $NAME/$NAME.cxx
+	touch $NAME/test.txt
 	echo "generated $NAME.cxx"
 	generate_makefile $NAME
 	echo "generated Makefile"
