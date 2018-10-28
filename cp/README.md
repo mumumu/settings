@@ -8,7 +8,7 @@ template.cxx を元に、プロジェクトを生成する
 ディレクトリ `project_name` を生成し、そこに Makefile と `project_name.cxx` を生成する
 
 ```
-$ ./cp.sh gen [project\_name]
+$ ./cp.sh gen [project_name]
 ```
 
 ### 2. プロジェクト削除
@@ -16,7 +16,7 @@ $ ./cp.sh gen [project\_name]
 ディレクトリ `project_name` を削除
 
 ```
-$ ./cp.sh del [project\_name]
+$ ./cp.sh del [project_name]
 ```
 
 ## Makefile の機能
