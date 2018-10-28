@@ -47,6 +47,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'fuenor/im_control.vim'
 call neobundle#end()
