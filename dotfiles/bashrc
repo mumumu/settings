@@ -138,7 +138,9 @@ fi
 # PATH
 export PATH=$HOME/bin:$PATH
 
-#
+#   keyrepeat
+xset r rate 195 120
+
 #   keychain
 #
 #   sudo apt-get install keychain
