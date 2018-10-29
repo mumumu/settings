@@ -47,3 +47,9 @@ make lint
 ```
 make test
 ```
+
+### コンパイル出力を削除
+
+```
+make clean
+```
