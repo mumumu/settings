@@ -28,7 +28,7 @@ EOS
 start() {
 	NAME=$1
 	if [ -z $NAME ]; then
-		echo "target name is empty!"
+		echo "project name is empty!"
 		exit 1
 	fi
 	if [ -d ./$NAME ]; then
@@ -57,7 +57,7 @@ delete() {
 }
 
 if [ $# -lt 1 ]; then
-	echo "usage: $0 [gen|del] [project name]"
+	echo "usage: $0 [gen|del] [project or problem name]"
 	exit 1;
 fi
 
@@ -70,5 +70,5 @@ del*)
 	delete $2
 	;;
 *)
-	echo "usage: $0 [gen|del] [project name]"
+	echo "usage: $0 [gen|del] [project or problem name]"
 esac
