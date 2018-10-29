@@ -4,8 +4,9 @@ cp.sh によって、競技プログラミングに必要なテンプレを生�
 
 ### 1. テンプレート生成
 
-template.cxx を元に、プロジェクトを生成する  
-ディレクトリ `project_name` を生成し、そこに Makefile と `project_name.cxx` を生成する
+* template.cxx を元に、プロジェクトを生成する
+* ディレクトリ `project_name` を生成し、そこに Makefile と `project_name.cxx` を生成する
+* テスト用の入力を入れる test.txt を生成する
 
 ```
 $ ./cp.sh gen [project_name]
@@ -31,6 +32,17 @@ make
 
 ### cxx ファイルに cout がひとつだけ入っているかをチェックする
 
+このオプションは、コードの書き方を著しく限定するものなので、廃止する可能性がある
+
 ```
 make lint
 ``` 
+
+
+### test.txt を標準入力から入力させ、コンパイル結果を実行する
+
+`cat test.txt | ./a.out` を実行させる
+
+```
+make test
+```
