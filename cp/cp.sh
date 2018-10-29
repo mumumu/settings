@@ -20,6 +20,9 @@ lint:
 test:
 	cat test.txt | ./a.out
 
+clean:
+	rm -rf ./a.out
+
 li:
 	\$(MAKE) -s lint
 EOS
