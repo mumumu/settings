@@ -37,10 +37,16 @@ start() {
 	fi
 	mkdir -p $NAME
 	cp $BASE/template.cxx $NAME/$NAME.cxx
-	touch $NAME/test.txt
 	echo "generated $NAME.cxx"
+	touch $NAME/test.txt
+	echo "generated test.txt"
 	generate_makefile $NAME
 	echo "generated Makefile"
+
+	# ブランチのディレクトリに移動し、シェルを新たに
+	# 起動することで、明示的にディレクトリを移動する
+	cd $NAME
+	exec /bin/bash
 }
 
 delete() {
