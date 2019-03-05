@@ -54,6 +54,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 call neobundle#end()
 
+let g:neosnippet#snippets_directory='~/settings/vim_snippets'
 
 " SuperTab like snippets behavior.
 imap  <expr><TAB>
