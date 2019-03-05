@@ -50,7 +50,23 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-scripts/ruby-matchit'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'fuenor/im_control.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 call neobundle#end()
+
+
+" SuperTab like snippets behavior.
+imap  <expr><TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 " Syntax
 syntax on
@@ -59,14 +75,12 @@ set background=dark
 " commands
 set fileencoding=utf-8
 set fileformat=unix
-set noexpandtab
-set shiftwidth=4
 set tabstop=4
 set shiftwidth=4
 set hidden
 set shell=/bin/bash\ -l\ -O\ expand_aliases
 set autoindent
-set paste
+set expandtab
 set splitright
 set nohlsearch
 set number
@@ -83,7 +97,11 @@ endif
 "
 "  http://www.vim.org/scripts/script.php?script_id=1542
 "  https://github.com/nvie/vim-flake8
-autocmd BufWrite *.py :call Flake8()
+let _ = system("which flake8")
+if !v:shell_error
+    filetype plugin on
+    autocmd BufWrite *.py call Flake8()
+endif
 
 "
 "  no backup
