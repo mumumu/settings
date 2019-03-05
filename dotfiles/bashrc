@@ -81,6 +81,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias pt='py.test -sv'
 alias ..='cd -'
+alias ma='make'
+alias mt='make test'
+alias mc='make clean'
 alias aptu="sudo apt-get update && sudo apt-get -y upgrade"
 alias sal="cd ~/Maildir && sa-learn --spam .spam/*"
 if [ -f "$HOME/bin/vim" ]; then
