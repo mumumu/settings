@@ -43,21 +43,6 @@ abbr        try catch
         ${3}
     }
 
-# range based for ( C++11 feature )
-snippet     for1
-options     head
-abbr        for (:) {}
-    for (${1:auto& }${2:var}: ${3:container}) {
-        ${0:TARGET}
-    }
-
-# Counter based for's (don't ask for the type or count start)
-snippet     fori6
-options     head
-abbr        for (int64_t x;...; x++) {}
-    for (int64_t ${1:i} = 0; $1 < ${2}; $1++) {
-        ${0:#:TARGET}
-    }
 
 # lambda expression ( C++11 feature )
 snippet     lambda
@@ -108,6 +93,11 @@ abbr        #include<iostream> int main...
         return 0;
     }
 
+snippet     in
+options     head
+  ${1:int} ${2:name};
+  cin >> $2;
+
 snippet     p
 options     head
   cout << ${0:TARGET}
@@ -118,3 +108,30 @@ snippet     el
 snippet     pl
 options     head
   cout << ${0:TARGET} << endl;
+
+# vector initialization
+snippet     iv
+alias       vi
+options     head
+    vector<${1:int}> arr;
+    $1 cur;
+    for ($1 ${2:i} = 0; $2 < ${3}; $2++) {
+        cin >> cur;
+        arr.push_back(cur);
+    }
+
+# range based for ( C++11 feature )
+snippet     for1
+options     head
+abbr        for (:) {}
+    for (${1:auto& }${2:var}: ${3:container}) {
+        ${0:TARGET}
+    }
+
+# Counter based for's (don't ask for the type or count start)
+snippet     fori6
+options     head
+abbr        for (int64_t x;...; x++) {}
+    for (int64_t ${1:i} = 0; $1 < ${2}; $1++) {
+        ${0:#:TARGET}
+    }
