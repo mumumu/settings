@@ -113,9 +113,9 @@ options     head
 snippet     iv
 alias       vi
 options     head
-    vector<${1:int}> arr;
+    vector<${1:int}> ${2:arr};
     $1 cur;
-    for ($1 ${2:i} = 0; $2 < ${3}; $2++) {
+    for ($1 ${3:i} = 0; $3 < ${4}; $3++) {
         cin >> cur;
         arr.push_back(cur);
     }
