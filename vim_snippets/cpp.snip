@@ -93,9 +93,14 @@ abbr        #include<iostream> int main...
         return 0;
     }
 
-snippet     in
+snippet     i
 options     head
   ${1:int} ${2:name};
+  cin >> $2;
+
+snippet     i6
+options     head
+  ${1:int64_t} ${2:name};
   cin >> $2;
 
 snippet     p
