@@ -116,13 +116,13 @@ options     head
 
 # vector initialization
 snippet     iv
-alias       vi
+alias       vi, vec
 options     head
     vector<${1:int}> ${2:arr};
     $1 cur;
     for ($1 ${3:i} = 0; $3 < ${4}; $3++) {
         cin >> cur;
-        arr.push_back(cur);
+        $2.push_back(cur);
     }
 
 # range based for ( C++11 feature )
