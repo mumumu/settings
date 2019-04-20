@@ -93,17 +93,24 @@ abbr        #include<iostream> int main...
         return 0;
     }
 
-snippet     i
+snippet     il
 options     head
-alias       l
   ${1:int} ${2:name};
   cin >> $2;
 
-snippet     i6
+snippet     ill
 options     head
-alias       ll
   ${1:int64_t} ${2:name};
   cin >> $2;
+
+snippet     i
+alias       l
+options     head
+  ${1:int} ${0};
+
+snippet     ll
+options     head
+  ${1:int64_t} ${0};
 
 snippet     p
 options     head
