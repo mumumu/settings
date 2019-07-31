@@ -102,9 +102,9 @@ options     head
   int ${2:name};
   cin >> $2;
 
-snippet     ill
+snippet     ull
 options     head
-  int64_t ${2:name};
+  uint64_t ${2:name};
   cin >> $2;
 
 snippet     i
@@ -140,14 +140,28 @@ options     head
 snippet     iv
 alias       ve, vi, vec
 options     head
-    vector<${1:int}> ${2:arr};
+    vector<${1:int}> ${2:arr}(${3:0});
+    ${4}
+
+# sort array
+snippet     sort
+alias       st, sor
+options     head
+    sort(${1:arr}.begin(), $1.end());${0}
+
+# setprecision
+snippet     setprecision
+alias       setp, setpre, setpreci
+options     head
+    setprecision(${1:15});${0}
+
 
 # range based for ( C++11 feature )
 snippet     for1
 options     head
 abbr        for (:) {}
     for (${1:auto& }${2:var}: ${3:container}) {
-        ${0:TARGET}
+        ${0}
     }
 
 # Counter based for's (don't ask for the type or count start)
@@ -155,7 +169,7 @@ snippet     fori6
 options     head
 abbr        for (int64_t x;...; x++) {}
     for (int64_t ${1:i} = 0; $1 < ${2}; $1++) {
-        ${0:#:TARGET}
+        ${0}
     }
 
 snippet     main
