@@ -54,6 +54,14 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 call neobundle#end()
 
+"
+" fcitx
+" 「日本語入力固定モード」の動作設定
+"
+let IM_CtrlMode = 6
+" 「日本語入力固定モード」切替キー
+inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+
 let g:neosnippet#snippets_directory='~/settings/vim_snippets'
 
 " SuperTab like snippets behavior.
