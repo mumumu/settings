@@ -166,7 +166,3 @@ fi
 if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/mumumu/.sdkman"
-[[ -s "/home/mumumu/.sdkman/bin/sdkman-init.sh" ]] && source "/home/mumumu/.sdkman/bin/sdkman-init.sh"
