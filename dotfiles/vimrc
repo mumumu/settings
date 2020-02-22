@@ -52,6 +52,7 @@ NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'fuenor/im_control.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'udalov/kotlin-vim'
 call neobundle#end()
 
 "
