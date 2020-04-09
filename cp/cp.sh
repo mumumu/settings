@@ -17,7 +17,7 @@ start() {
 
     echo "ext: $EXT"
     if [[ $EXT == cxx* || $EXT == c++* ]]; then
-        EXTVER="c++14"
+        EXTVER="c++17"
         if [[ $EXT == cxx* ]]; then
             VER=${EXT#cxx}
         fi
