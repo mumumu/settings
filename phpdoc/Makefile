@@ -1,3 +1,9 @@
+setup:
+	sudo apt install build-essential git subversion libxml2-dev libkrb5-dev libsqlite3-dev libbz2-dev libcurl-dev libcurl4-openssl-dev libjpeg-dev libonig-dev libreadline-dev libtidy-dev libxslt-dev libzip-dev
+	git clone git://github.com/phpenv/phpenv.git ~/.phpenv
+	git clone https://github.com/php-build/php-build ~/.phpenv/plugins/php-build
+	echo "--with-pear" >> ~/.phpenv/plugins/php-build/share/php-build/default_configure_options
+
 up:
 	svn up
 	make -j1 build
