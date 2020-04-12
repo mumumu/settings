@@ -6,6 +6,7 @@ setup:
 	git clone git://github.com/phpenv/phpenv.git ~/.phpenv
 	git clone https://github.com/php-build/php-build ~/.phpenv/plugins/php-build
 	echo "--with-pear" >> ~/.phpenv/plugins/php-build/share/php-build/default_configure_options
+	exec /bin/bash -l
 
 up:
 	svn up
