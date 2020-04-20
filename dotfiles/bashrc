@@ -142,7 +142,7 @@ if [ -d $HOME/.pyenv ]; then
 fi
 
 # PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:$PATH
 
 #   keyrepeat
 xset r rate 195 120
