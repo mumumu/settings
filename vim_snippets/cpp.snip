@@ -179,6 +179,16 @@ abbr        for (int64_t x;...; x++) {}
         ${0}
     }
 
+# codeforces input template
+snippet     cf
+options     head
+abbr        for (int64_t x;...; x++) {}
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; i++) {
+        ${0}
+    }
+
 snippet     main
 abbr        #include<bits/stdc++.h> int main...
   #include <bits/stdc++.h>
