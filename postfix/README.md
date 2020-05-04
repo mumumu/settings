@@ -65,6 +65,8 @@ smtpd_sasl_security_options = noanonymous,noplaintext
 postfix では、デフォルトで chroot jail が有効になっている。  
 なので、 `/etc/sasldb2` は jail 配下にコピーしなければならない。
 
+また、この sasldb2 は、postfix プロセスが開けるように適切なパーミッションが設定されていなければならない。
+
 ```
 $ ls -la /var/spool/postfix/etc/sasldb2
 -rw-r----- 1 root postfix 12288 Nov  3 06:05 /var/spool/postfix/etc/sasldb2
