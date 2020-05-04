@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+export TZ="Asia/Tokyo"
+CHM_UPDATED_DATE=`curl -Is https://phpmanualchm.s3-ap-northeast-1.amazonaws.com/php_manual_en.chm | grep Last-Modified | awk -F"Last-Modified: " "{print \\$2}"`
+
+CHM_UPDATED_UNIXTIME=`date --date="$CHM_UPDATED_DATE" +%s`
+NOW_UNIXTIME=`date +%s`
+
+SUB_UNIXTIME=`expr $NOW_UNIXTIME - $CHM_UPDATED_UNIXTIME`
+LIMIT=$((60 * 60 * 24 * 15))  # 2 week
+
+if [ $SUB_UNIXTIME -gt $LIMIT ]; then
+   echo "CRITICAL: chm file not updated over 2 week!!"
+   exit 1
+else
+   #echo "ok: chm file updated on -> $CHM_UPDATED_DATE"
+   exit 0
+fi
