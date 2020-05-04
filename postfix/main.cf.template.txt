@@ -1,0 +1,34 @@
+
+myorigin = XXXXXX
+mydomain = XXXXXX
+smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
+biff = no
+
+# appending .domain is the MUA's job.
+append_dot_mydomain = no
+readme_directory = no
+
+# See http://www.postfix.org/COMPATIBILITY_README.html -- default to 2 on
+# fresh installs.
+compatibility_level = 2
+
+myhostname = XXXXXX
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+mydestination = $myhostname, $mydomain, localhost
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
+
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_path = smtpd
+smtpd_recipient_restrictions =
+    permit_mynetworks
+    permit_sasl_authenticated
+    reject_unauth_destination
+broken_sasl_auth_clients = yes
+smtpd_sasl_security_options = noanonymous,noplaintext
+
+message_size_limit = 102400000
+mailbox_size_limit = 204800000
