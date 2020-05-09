@@ -102,6 +102,7 @@ set number
 :command Mt !make && make test
 :command T !make test
 nnoremap <silent> <C-j> <ESC>:bnext<CR>
+nnoremap <silent> <C-b> <ESC>:bnext<CR>
 nnoremap <silent> <C-n> <ESC>:bnext<CR>
 inoremap <silent> jj <ESC>
 if has('terminal')
