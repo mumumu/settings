@@ -13,6 +13,9 @@ test:
 
 clean:
 	rm -rf ./a.out
+
+open:
+	vim $NAME.cxx test.txt
 EOS
 }
 

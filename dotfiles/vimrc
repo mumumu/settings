@@ -67,11 +67,8 @@ let g:neosnippet#snippets_directory='~/settings/vim_snippets'
 
 " SuperTab like snippets behavior.
 imap  <expr><TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+   \ pumvisible() ? "\<C-n>" :
+   \ neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 if has('conceal')
@@ -98,6 +95,12 @@ set number
 "  command aliases
 :command Nn set nonumber
 :command NN set number
+:command M !make
+:command Mt !make && make test
+:command T !make test
+nnoremap <silent> <C-j> <ESC>:bnext<CR>
+nnoremap <silent> <C-n> <ESC>:bnext<CR>
+inoremap <silent> jj <ESC>
 if has('terminal')
   :command Te terminal ++close ++rows=15
 endif

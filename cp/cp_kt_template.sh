@@ -13,6 +13,9 @@ test:
 
 clean:
 	rm -rf $NAME.jar
+
+open:
+	vim $NAME.kt test.txt
 EOS
 }
 
