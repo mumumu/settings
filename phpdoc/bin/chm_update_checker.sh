@@ -13,6 +13,8 @@ if [ $SUB_UNIXTIME -gt $LIMIT ]; then
    echo "CRITICAL: chm file not updated over 2 week!!"
    exit 1
 else
-   #echo "ok: chm file updated on -> $CHM_UPDATED_DATE"
+   if [ $# -eq 1 ]; then
+       echo "ok: chm file updated on -> $CHM_UPDATED_DATE"
+   fi
    exit 0
 fi
