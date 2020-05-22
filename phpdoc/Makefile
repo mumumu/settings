@@ -19,6 +19,7 @@ chk:
 
 pd: build
 	phd -f xhtml -L ja -P PHP -d doc-base/.manual.xml
+	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
     
 clean:
 	rm -rf ja/*.txt
