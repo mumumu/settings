@@ -1,0 +1,15 @@
+# codeforces input template
+snippet     cf
+options     head
+    val t = readLine()!!.toInt()
+
+snippet     rep
+options     head
+    repeat(${1:t}) {
+        ${2}
+    }
+
+snippet     main
+options     head
+    fun main(args: Array<String>) {${0}
+    }
