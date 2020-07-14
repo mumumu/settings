@@ -128,7 +128,7 @@ fi
 if [ -d $HOME/.phpenv ]; then
     export PATH="$HOME/.phpenv/bin:$PATH"
     eval "$(phpenv init -)"
-    alias phpenv="PHP_BUILD_EXTRA_MAKE_ARGUMENTS=-j4 phpenv"
+    alias phpenv="PHP_BUILD_EXTRA_MAKE_ARGUMENTS=-j`grep -c ^processor /proc/cpuinfo 2>/dev/null` phpenv"
 fi
 
 #
