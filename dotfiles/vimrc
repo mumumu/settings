@@ -94,6 +94,7 @@ set expandtab
 set splitright
 set nohlsearch
 set number
+set clipboard=unnamedplus
 
 "  command aliases
 :command Nn set nonumber
@@ -172,3 +173,4 @@ function! RangeChooser()
 endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
+nnoremap <C-a> ggVG
