@@ -147,7 +147,9 @@ fi
 export PATH=$HOME/bin:$HOME/local/bin:$PATH
 
 #   keyrepeat
-xset r rate 195 120
+if [ -f /usr/bin/xset ]; then
+    xset r rate 195 120
+fi
 
 #   keychain
 #
