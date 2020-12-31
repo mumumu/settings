@@ -9,7 +9,9 @@ setup:
 	exec /bin/bash -l
 
 up:
-	svn up
+	cd doc-base && git pull
+	cd en && git pull
+	cd ja && git pull
 	make -j1 build
 	make -j1 chk
 	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
@@ -20,7 +22,12 @@ chk:
 pd: build
 	phd -f xhtml -L ja -P PHP -d doc-base/.manual.xml
 	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
-    
+
+pden:
+	php doc-base/configure.php --with-lang=en --enable-xml-details
+	phd -f xhtml -L en -P PHP -d doc-base/.manual.xml
+	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+
 clean:
 	rm -rf ja/*.txt
 	rm -rf output

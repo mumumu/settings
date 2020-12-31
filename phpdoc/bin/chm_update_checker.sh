@@ -11,6 +11,7 @@ LIMIT=$((60 * 60 * 24 * 15))  # 2 week
 
 if [ $SUB_UNIXTIME -gt $LIMIT ]; then
    echo "CRITICAL: chm file not updated over 2 week!!"
+   aws s3 ls s3://phpmanualchm/
    exit 1
 else
    if [ $# -eq 1 ]; then
