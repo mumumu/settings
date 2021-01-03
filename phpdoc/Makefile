@@ -1,6 +1,14 @@
 build:
 	php doc-base/configure.php --with-lang=ja --enable-xml-details
 
+builden:
+	php doc-base/configure.php --with-lang=en --enable-xml-details
+
+clone:
+	git clone git@git.php.net:/doc/base.git doc-base
+	git clone git@git.php.net:/doc/en.git en
+	git clone git@git.php.net:/doc/ja.git ja
+
 setup:
 	sudo apt install build-essential git subversion libxml2-dev libkrb5-dev libsqlite3-dev libbz2-dev libcurl4-openssl-dev libcurl4-openssl-dev libjpeg-dev libonig-dev libreadline-dev libtidy-dev libxslt-dev libzip-dev
 	git clone git://github.com/phpenv/phpenv.git ~/.phpenv
@@ -13,8 +21,8 @@ up:
 	cd en && git pull
 	cd ja && git pull
 	make -j1 build
-	make -j1 chk
-	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
+	#make -j1 chk
+	#/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
 
 chk:
 	php doc-base/scripts/revcheck.php ja > revcheck.html
