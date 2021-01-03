@@ -7,10 +7,10 @@ CHM_UPDATED_UNIXTIME=`date --date="$CHM_UPDATED_DATE" +%s`
 NOW_UNIXTIME=`date +%s`
 
 SUB_UNIXTIME=`expr $NOW_UNIXTIME - $CHM_UPDATED_UNIXTIME`
-LIMIT=$((60 * 60 * 24 * 15))  # 2 week
+LIMIT=$((60 * 60 * 24 * 20))  # 20 days
 
 if [ $SUB_UNIXTIME -gt $LIMIT ]; then
-   echo "CRITICAL: chm file not updated over 2 week!!"
+   echo "CRITICAL: chm file not updated over 20 days!!"
    aws s3 ls s3://phpmanualchm/
    exit 1
 else
