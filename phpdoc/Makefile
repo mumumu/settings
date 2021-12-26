@@ -21,20 +21,38 @@ up:
 	cd en && git pull
 	cd ja && git pull
 	make -j1 build
-	#make -j1 chk
-	#/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
+	make -j1 chk
+	/usr/bin/firefox --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
+	/usr/bin/firefox --force-device-scale-factor=1.3 https://github.com/php/doc-en/commits/master &
 
 chk:
 	php doc-base/scripts/revcheck.php ja > revcheck.html
 
 pd: build
 	phd -f xhtml -L ja -P PHP -d doc-base/.manual.xml
-	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+	/usr/bin/firefox --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+
+chen:
+	mv en en.bak
+	ln -s doc-en-github en
+
+resen:
+	rm -rf en
+	mv en.bak en
 
 pden:
 	php doc-base/configure.php --with-lang=en --enable-xml-details
 	phd -f xhtml -L en -P PHP -d doc-base/.manual.xml
-	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+	/usr/bin/firefox --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+
+ghpden:
+	mv en en.bak
+	mv doc-en-github en
+	php doc-base/configure.php --with-lang=en --enable-xml-details
+	phd -f xhtml -L en -P PHP -d doc-base/.manual.xml
+	/usr/bin/firefox --force-device-scale-factor=1.3 output/php-chunked-xhtml/index.html 2>/dev/null &
+	mv en doc-en-github
+	mv en.bak en
 
 clean:
 	rm -rf ja/*.txt
@@ -42,3 +60,4 @@ clean:
 	find ja -name "*.tmp" | xargs -n 1 rm -rf
 	find ja -name "*.orig" | xargs -n 1 rm -rf
 	find ja -name "*.rej" | xargs -n 1 rm -rf
+	find ja -name "*.patch" | xargs -n 1 rm -rf

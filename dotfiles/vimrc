@@ -81,6 +81,7 @@ endif
 " Syntax
 syntax on
 set background=dark
+hi Comment ctermfg=LightCyan
 
 " commands
 set fileencoding=utf-8
