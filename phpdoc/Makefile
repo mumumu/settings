@@ -5,9 +5,9 @@ builden:
 	php doc-base/configure.php --with-lang=en --enable-xml-details
 
 clone:
-	git clone git@git.php.net:/doc/base.git doc-base
-	git clone git@git.php.net:/doc/en.git en
-	git clone git@git.php.net:/doc/ja.git ja
+	git clone git@github.com:php/doc-base.git doc-base
+	git clone git@github.com:php/doc-en.git en
+	git clone git@github.com:php/doc-ja.git ja
 
 setup:
 	sudo apt install build-essential git subversion libxml2-dev libkrb5-dev libsqlite3-dev libbz2-dev libcurl4-openssl-dev libcurl4-openssl-dev libjpeg-dev libonig-dev libreadline-dev libtidy-dev libxslt-dev libzip-dev
