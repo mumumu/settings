@@ -1,0 +1,16 @@
+FROM ubuntu:impish
+MAINTAINER mumumu <mumumu@mumumu.org>
+
+ENV DEBIAN_FRONTEND=noninteractive
+WORKDIR /tmp
+
+RUN grep '^deb ' /etc/apt/sources.list | \
+  sed 's/^deb /deb-src /g' | \
+  tee /etc/apt/sources.list.d/deb-src.list
+RUN apt update
+RUN apt install -y devscripts
+RUN apt install -y build-essential
+RUN apt build-dep -y sylpheed
+RUN apt source sylpheed
+ADD sylpheed_vi_keybind.patch /tmp/sylpheed-3.7.0
+RUN cd /tmp/sylpheed-3.7.0 && patch -p0 < sylpheed_vi_keybind.patch && debuild -b -uc -us
