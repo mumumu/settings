@@ -2,6 +2,10 @@
 
 このファイルは、Linux のデスクトップ環境 [KDE](https://kde.org) の汎用文書ビューア [Okular](https://okular.kde.org/) にまつわるスクリプトや tips を集めたものです。
 
+個人的には、特にPDFを閲覧するのに重宝しています。
+
+![Okularのスクショ](https://okular.kde.org/images/screenies/okular-main.png)
+
 ## Okular のスクロール速度を速くする方法
 
 Okular は vi のキーバインドに従って文書を上下スクロールしつつ閲覧できます。とても便利なものなのですが、4K ディスプレイなどの場合、スクロール速度が合わないことがあり、しかもそれを現状は調整できません。
