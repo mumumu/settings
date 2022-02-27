@@ -1,6 +1,6 @@
-## これは何？
+## Okular にまつわる Tips
 
-Linux のデスクトップ環境 [KDE](https://kde.org) の汎用文書ビューア [Okular](https://okular.kde.org/) にまつわるスクリプトや tips を集めたものです。
+このファイルは、Linux のデスクトップ環境 [KDE](https://kde.org) の汎用文書ビューア [Okular](https://okular.kde.org/) にまつわるスクリプトや tips を集めたものです。
 
 ## Okular のスクロール速度を速くする方法
 
@@ -76,5 +76,7 @@ if config.has_section('Recent Files'):
 upstream 側は当然この問題を認識しています。
 
 長い間望まれている機能なので、解決されていそうなものですし、何度か関連のコミットが行われているのですが、最新版でも解決されていないようです。
+
+はて。。実現は難しくなさそうなんですけどね。
 
 https://bugs.kde.org/show_bug.cgi?id=397463
