@@ -1,4 +1,4 @@
-## Okular にまつわる Tips
+# Okular にまつわる Tips
 
 このファイルは、Linux のデスクトップ環境 [KDE](https://kde.org) の汎用文書ビューア [Okular](https://okular.kde.org/) にまつわるスクリプトや tips を集めたものです。
 
