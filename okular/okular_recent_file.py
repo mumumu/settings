@@ -22,6 +22,6 @@ if config.has_section('Recent Files'):
     file_items = []
     for item in config.items('Recent Files'):
         if re.match('file', item[0]):
-            file_items.append(item[1])
+            file_items.insert(0, item[1])
     if len(file_items) > 0:
-        print(file_items[-1])
+        print(' '.join(set(file_items)))
