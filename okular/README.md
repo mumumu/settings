@@ -4,7 +4,7 @@
 
 個人的には、特にPDFを閲覧するのに重宝しています。
 
-![Okularのスクショ](https://okular.kde.org/images/screenies/okular-main.png)
+<img src="https://okular.kde.org/images/screenies/okular-main.png" width="800"/>
 
 ## Okular のスクロール速度を速くする方法
 
