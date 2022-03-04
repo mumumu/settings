@@ -1,0 +1,14 @@
+<snippet>
+	<tabTrigger>main</tabTrigger>
+	<description>C++ main template</description>
+	<content><![CDATA[
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+    ${0:}
+	return 0;
+}
+]]></content>
+</snippet>
