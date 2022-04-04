@@ -1,0 +1,13 @@
+{
+    "target": "competive_programming_build",
+    "workdir": "/tmp",
+    "input_filename": "test.txt",
+    "file_ext": "cxx",
+    "commands": {
+        "build": "/usr/bin/g++ -std=c++17 -Wall -Werror=unused-variable $file",
+        "run": {
+            "cmd": "/tmp/a.out",
+            "timeout_sec": 3
+        }
+    }
+}

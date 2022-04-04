@@ -1,5 +1,0 @@
-{
-    "cmd": "g++ -std=c++17 -o a.out $file && cat test.txt | ./a.out",
-    "selector": "source.cpp",
-    "shell": true
-}
