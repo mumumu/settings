@@ -42,6 +42,8 @@ if [ -f /usr/bin/git ]; then
     export SVN_EDITOR=vim
     export VISUAL=vim
     export EDITOR="$VISUAL"
+    GPG_TTY=$(tty)
+    export GPG_TTY
 
     alias di="git diff"
     alias st="git status"
