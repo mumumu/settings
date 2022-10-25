@@ -39,7 +39,6 @@ if [ -f /usr/bin/git ]; then
     fi 
     export GIT_PS1_SHOWDIRTYSTATE=true
     export PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \t \[\033[1;36m\]\w \[\033[31m\]$(__git_ps1 "[%s]")\[\033[00m\] $ '
-    [ -n "$RANGER_LEVEL" ] && export PS1="(ranger$RANGER_LEVEL) $PS1"
     export SVN_EDITOR=vim
     export VISUAL=vim
     export EDITOR="$VISUAL"
@@ -97,15 +96,6 @@ alias pt='py.test -sv'
 alias make='make -j`grep -c ^processor /proc/cpuinfo 2>/dev/null`'
 alias ..='cd -'
 alias g++='g++ -std=c++14'
-
-#
-#  ranger
-#  sudo apt-get install ranger
-#
-alias r='ranger'
-if [ ! -d $HOME/.config/ranger ]; then
-    /usr/bin/ranger --copy-config=all
-fi
 
 #
 #  rbenv
