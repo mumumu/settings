@@ -23,6 +23,7 @@
     ci = commit
     st = status
     di = diff
+    dic = diff --cached
     gr = grep
     pu = pull
     # commit log graph

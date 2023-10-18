@@ -88,6 +88,8 @@ set fileencoding=utf-8
 set fileformat=unix
 set tabstop=4
 set shiftwidth=4
+set textwidth=0
+set tw=0
 set hidden
 set shell=/bin/bash\ -l\ -O\ expand_aliases
 set autoindent

@@ -45,6 +45,7 @@ if [ -f /usr/bin/git ]; then
     export EDITOR="$VISUAL"
 
     alias di="git diff"
+    alias dic="git diff --cached"
     alias st="git status"
     alias br="git branch"
     alias gw="git worktree"
@@ -82,6 +83,7 @@ alias l='ls -CF'
 alias pt='py.test -sv'
 alias ..='cd -'
 alias ma='make'
+alias bc='bc -l'
 alias mt='make test'
 alias mc='make clean'
 alias mo='make -j1 open'
@@ -142,6 +144,20 @@ if [ -d $HOME/.pyenv ]; then
     eval "$(pyenv init --path)"
 fi
 
+#  nvm
+if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+#  goenv
+if [ -d $HOME/.goenv ]; then
+    export GOENV_ROOT="$HOME/.goenv"
+    export PATH="$GOENV_ROOT/bin:$PATH"
+    eval "$(goenv init -)"
+fi
+
 # PATH
 export PATH=$HOME/bin:$HOME/local/bin:$PATH
 
@@ -170,3 +186,5 @@ fi
 if [ -f $HOME/.bashrc_custom ];then
     . $HOME/.bashrc_custom
 fi
+
+complete -C /usr/bin/terraform terraform

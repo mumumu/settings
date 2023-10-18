@@ -23,7 +23,7 @@ up:
 	make -j1 build
 	make -j1 chk
 	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 revcheck.html 2>/dev/null &
-	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 https://github.com/php/doc-en/commits/master &
+	/usr/bin/google-chrome-stable --force-device-scale-factor=1.3 https://github.com/php/doc-en/commits/master 2>/dev/null &
 
 chk:
 	php doc-base/scripts/revcheck.php ja > revcheck.html
