@@ -1,0 +1,199 @@
+Index: src/mainwindow.c
+===================================================================
+--- src/mainwindow.c	(revision 3616)
++++ src/mainwindow.c	(working copy)
+@@ -481,7 +481,9 @@
+ static void next_labeled_cb	 (MainWindow	*mainwin,
+ 				  guint		 action,
+ 				  GtkWidget	*widget);
+-
++static void latest_cb		 (MainWindow	*mainwin,
++				  guint		 action,
++				  GtkWidget	*widget);
+ static void goto_folder_cb	 (MainWindow	*mainwin,
+ 				  guint		 action,
+ 				  GtkWidget	*widget);
+@@ -680,6 +682,9 @@
+ 	{N_("/_View/_Go to/Next la_beled message"),
+ 						NULL, next_labeled_cb, 0, NULL},
+ 	{N_("/_View/_Go to/---"),		NULL, NULL, 0, "<Separator>"},
++	{N_("/_View/_Go to/La_test message"),
++						NULL, latest_cb, 0, NULL},
++	{N_("/_View/_Go to/---"),		NULL, NULL, 0, "<Separator>"},
+ 	{N_("/_View/_Go to/Other _folder..."),	"G", goto_folder_cb, 0, NULL},
+ 	{N_("/_View/---"),			NULL, NULL, 0, "<Separator>"},
+ 
+@@ -2176,6 +2181,7 @@
+ 		{"/View/Go to/Next marked message" , M_MSG_EXIST},
+ 		{"/View/Go to/Prev labeled message", M_MSG_EXIST},
+ 		{"/View/Go to/Next labeled message", M_MSG_EXIST},
++		{"/View/Go to/Latest message"      , M_MSG_EXIST},
+ 		{"/View/Open in new window"        , M_SINGLE_TARGET_EXIST},
+ 		{"/View/All headers"          , M_SINGLE_TARGET_EXIST},
+ 		{"/View/Message source"            , M_SINGLE_TARGET_EXIST},
+@@ -3962,6 +3968,12 @@
+ 	summary_select_next_labeled(mainwin->summaryview);
+ }
+ 
++static void latest_cb(MainWindow *mainwin, guint action,
++			    GtkWidget *widget)
++{
++	summary_select_latest(mainwin->summaryview);
++}
++
+ static void goto_folder_cb(MainWindow *mainwin, guint action,
+ 			   GtkWidget *widget)
+ {
+Index: src/prefs_common_dialog.c
+===================================================================
+--- src/prefs_common_dialog.c	(revision 3616)
++++ src/prefs_common_dialog.c	(working copy)
+@@ -4090,6 +4090,7 @@
+ 			       _("Default"),
+ 			       "Mew / Wanderlust",
+ 			       "Mutt",
++			       _("vi flavored"),
+ 			       _("Old Sylpheed"),
+ 			       NULL);
+ 	gtk_editable_set_editable
+@@ -4186,6 +4187,7 @@
+ 		{"<Main>/View/Go to/Next message",		"N"},
+ 		{"<Main>/View/Go to/Prev unread message",	"<shift>P"},
+ 		{"<Main>/View/Go to/Next unread message",	"<shift>N"},
++		{"<Main>/View/Go to/Latest message",	"<shift>G"},
+ 		{"<Main>/View/Go to/Other folder...",		"G"},
+ 		{"<Main>/View/Open in new window",		"<control><alt>N"},
+ 		{"<Main>/View/View source",			"<control>U"},
+@@ -4234,6 +4236,7 @@
+ 		{"<Main>/View/Go to/Next message",		"N"},
+ 		{"<Main>/View/Go to/Prev unread message",	"<shift>P"},
+ 		{"<Main>/View/Go to/Next unread message",	"<shift>N"},
++		{"<Main>/View/Go to/Latest message",	"<shift>G"},
+ 		{"<Main>/View/Go to/Other folder...",		"G"},
+ 		{"<Main>/View/Open in new window",		"<control><alt>N"},
+ 		{"<Main>/View/View source",			"<control>U"},
+@@ -4282,6 +4285,7 @@
+ 		{"<Main>/View/Go to/Next message",		""},
+ 		{"<Main>/View/Go to/Prev unread message",	""},
+ 		{"<Main>/View/Go to/Next unread message",	""},
++		{"<Main>/View/Go to/Latest message",	""},
+ 		{"<Main>/View/Go to/Other folder...",		"C"},
+ 		{"<Main>/View/Open in new window",		"<control><alt>N"},
+ 		{"<Main>/View/View source",			"<control>U"},
+@@ -4313,6 +4317,55 @@
+ 		{"<Compose>/Edit/Select all",			""},
+ 	};
+ 
++	static struct KeyBind vim_flavored_menurc[] = {
++		{"<Main>/File/Empty all trash",			""},
++		{"<Main>/File/Save as...",			"<control>S"},
++		{"<Main>/File/Print...",			""},
++		{"<Main>/File/Exit",				"<control>Q"},
++
++		{"<Main>/Edit/Copy",				"<control>C"},
++		{"<Main>/Edit/Select all",			"<control>A"},
++		{"<Main>/Edit/Find in current message...",	"<control>F"},
++		{"<Main>/Edit/Search messages...",		"<shift><control>F"},
++
++		{"<Main>/View/Show or hide/Message view",	"V"},
++		{"<Main>/View/Thread view",			"<control>T"},
++		{"<Main>/View/Go to/Prev message",		"k"},
++		{"<Main>/View/Go to/Next message",		"j"},
++		{"<Main>/View/Go to/Prev unread message",	"<shift>K"},
++		{"<Main>/View/Go to/Next unread message",	"<shift>J"},
++		{"<Main>/View/Go to/Latest message",	"<shift>G"},
++		{"<Main>/View/Go to/Other folder...",		"g"},
++		{"<Main>/View/Open in new window",		"<control><alt>N"},
++		{"<Main>/View/View source",			"<control>U"},
++		{"<Main>/View/Show all headers",		"<control>H"},
++		{"<Main>/View/Update",				"<control><alt>U"},
++
++		{"<Main>/Message/Receive/Get new mail",			"<control>I"},
++		{"<Main>/Message/Receive/Get from all accounts",	"<shift><control>I"},
++		{"<Main>/Message/Compose new message",		"<control>M"},
++		{"<Main>/Message/Reply",			"<control>R"},
++		{"<Main>/Message/Reply to/all",			"<shift><control>R"},
++		{"<Main>/Message/Reply to/sender",		""},
++		{"<Main>/Message/Reply to/mailing list",	"<control>L"},
++		{"<Main>/Message/Forward",			"<control><alt>F"},
++		{"<Main>/Message/Forward as attachment",	""},
++		{"<Main>/Message/Move...",			"<control>O"},
++		{"<Main>/Message/Copy...",			"<shift><control>O"},
++		{"<Main>/Message/Delete",			"<control>D"},
++		{"<Main>/Message/Mark/Set flag",		"<shift>asterisk"},
++		{"<Main>/Message/Mark/Unset flag",		"U"},
++		{"<Main>/Message/Mark/Mark as unread",		"<shift>exclam"},
++		{"<Main>/Message/Mark/Mark as read",		""},
++
++		{"<Main>/Tools/Address book",			"<shift><control>A"},
++		{"<Main>/Tools/Execute",			"X"},
++		{"<Main>/Tools/Log window",			"<shift><control>L"},
++
++		{"<Compose>/File/Close",			"<control>W"},
++		{"<Compose>/Edit/Select all",			"<control>A"},
++	};
++
+ 	static struct KeyBind old_sylpheed_menurc[] = {
+ 		{"<Main>/File/Empty all trash",			""},
+ 		{"<Main>/File/Save as...",			""},
+@@ -4330,6 +4383,7 @@
+ 		{"<Main>/View/Go to/Next message",		"N"},
+ 		{"<Main>/View/Go to/Prev unread message",	"<shift>P"},
+ 		{"<Main>/View/Go to/Next unread message",	"<shift>N"},
++		{"<Main>/View/Go to/Latest message",	"<shift>G"},
+ 		{"<Main>/View/Go to/Other folder...",		"<alt>G"},
+ 		{"<Main>/View/Open in new window",		"<shift><control>N"},
+ 		{"<Main>/View/View source",			"<control>U"},
+@@ -4378,6 +4432,7 @@
+ 		{"<Main>/View/Go to/Next message",		""},
+ 		{"<Main>/View/Go to/Prev unread message",	""},
+ 		{"<Main>/View/Go to/Next unread message",	""},
++		{"<Main>/View/Go to/Latest message",	""},
+ 		{"<Main>/View/Go to/Other folder...",		""},
+ 		{"<Main>/View/Open in new window",		""},
+ 		{"<Main>/View/View source",			""},
+@@ -4420,6 +4475,9 @@
+ 	} else if (!strcmp(text, "Mutt")) {
+ 		menurc = mutt_menurc;
+ 		n_menurc = G_N_ELEMENTS(mutt_menurc);
++	} else if (!strcmp(text, _("vi flavored"))) {
++		menurc = vim_flavored_menurc;
++		n_menurc = G_N_ELEMENTS(vim_flavored_menurc);
+ 	} else if (!strcmp(text, _("Old Sylpheed"))) {
+ 		menurc = old_sylpheed_menurc;
+ 		n_menurc = G_N_ELEMENTS(old_sylpheed_menurc);
+Index: src/summaryview.c
+===================================================================
+--- src/summaryview.c	(revision 3616)
++++ src/summaryview.c	(working copy)
+@@ -1714,6 +1714,18 @@
+ 				    _("No labeled messages."));
+ }
+ 
++void summary_select_latest(SummaryView *summaryview)
++{
++	GtkTreeModel *model = GTK_TREE_MODEL(summaryview->store);
++	GtkTreeIter iter;
++	gboolean valid = TRUE;
++
++	valid = gtkut_tree_model_get_iter_last(model, &iter);
++	if (valid) {
++		summary_select_row(summaryview, &iter, FALSE, TRUE);
++	}
++}
++
+ void summary_select_by_msgnum(SummaryView *summaryview, guint msgnum)
+ {
+ 	GtkTreeIter iter;
+Index: src/summaryview.h
+===================================================================
+--- src/summaryview.h	(revision 3616)
++++ src/summaryview.h	(working copy)
+@@ -209,6 +209,7 @@
+ void summary_select_next_marked	  (SummaryView		*summaryview);
+ void summary_select_prev_labeled  (SummaryView		*summaryview);
+ void summary_select_next_labeled  (SummaryView		*summaryview);
++void summary_select_latest		  (SummaryView		*summaryview);
+ void summary_select_by_msgnum	  (SummaryView		*summaryview,
+ 				   guint		 msgnum);
+ gboolean summary_select_by_msginfo(SummaryView		*summaryview,

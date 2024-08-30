@@ -7,3 +7,9 @@ $ cd 20.04
 $ sudo docker build -t myimage/ubuntu-focal-sylpheed:1.0 .
 $ sudo docker run --rm -i -v `pwd`:/tmp/mnt/ myimage/ubuntu-focal-sylpheed:1.0 /bin/sh -c "cp /tmp/*.deb /tmp/mnt/"
 ```
+
+```
+$ cd 24.04
+$ sudo docker build -t myimage/ubuntu-noble-sylpheed:1.0 .
+$ sudo docker run --rm -i -v `pwd`:/tmp/mnt/ myimage/ubuntu-noble-sylpheed:1.0 /bin/sh -c "cp /tmp/*.deb /tmp/mnt/"
+```
